@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personagens</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #cc0000; /* Vermelho escuro */
+        background-image: repeating-linear-gradient(45deg, #ff3333, #ff3333 10px, #cc0000 10px, #cc0000 20px); /* Listras */
+        position: relative; /* Adicionado para permitir o posicionamento absoluto */
+    }
+    .container {
+        display: flex;
+        align-items: center;
+    }
+    .image {
+        margin-right: 50px; /* Espaçamento entre a imagem e o texto */
+        width: 300px; /* Largura da imagem */
+        height: auto; /* Altura ajustada automaticamente */
+        opacity: 0; /* Inicialmente invisível */
+        animation: fadeIn 1s forwards; /* Animação de fade in */
+        margin-top: -50px; /* Mover a imagem para cima */
+    }
+    .text {
+        margin-left: auto; /* Texto no canto direito */
+        color: white;
+        font-size: 28px; /* Tamanho do texto */
+        font-weight: bold;
+        opacity: 0; /* Inicialmente invisível */
+        animation: fadeIn 1s forwards; /* Animação de fade in */
+    }
+    .button {
+        position: absolute;
+        bottom: 20px;
+        width: 50px; /* Largura do botão */
+        height: 50px; /* Altura do botão */
+        background-color: #ff3333; /* Vermelho */
+        border: none;
+        border-radius: 50%; /* Formato circular */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Transição suave para todas as propriedades */
+        outline: none; /* Remover contorno */
+        z-index: 1; /* Colocar o botão acima da imagem e do texto */
+        left: 50%; /* Posição horizontal no centro */
+        transform: translateX(-50%); /* Centralizar horizontalmente */
+    }
+    .button:hover {
+        background-color: #990000; /* Vermelho escuro */
+    }
+    .button:after {
+        content: "\2192"; /* Código Unicode para seta direita */
+        font-size: 24px;
+        color: #990000; /* Vermelho escuro */
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .active {
+        background-color: #33cc33; /* Verde */
+    }
+    .active + .container .image {
+        content: url('https://i.postimg.cc/nL1FWjZT/Moura.png'); /* Substituir pela URL da imagem verde */
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <img src="https://i.postimg.cc/NjMkFTC2/Dalsass.png" alt="Imagem azul" class="image">
+    <div class="text">Dalsass, o  protagonista é extremamente forte, possui uma habilidade de fazer sua perna direita pegar fogo, isso lhe oferece uma grande velocidade, força e resistencia no corpo</div>
+</div>
+<button class="button" onclick="changeState()"></button>
+
+<script>
+function changeState() {
+    var button = document.querySelector('.button');
+    var container = document.querySelector('.container');
+    
+    if (button.classList.contains('active')) {
+        button.classList.remove('active');
+        container.querySelector('.image').src = 'https://i.postimg.cc/NjMkFTC2/Dalsass.png'; /* Substituir pela URL da imagem azul */
+        container.querySelector('.text').textContent = 'Dalsass, o  protagonista é extremamente forte, possui uma habilidade de fazer sua perna direita pegar fogo, isso lhe oferece uma grande velocidade, força e resistencia no corpo';
+    } else {
+        button.classList.add('active');
+        container.querySelector('.image').src = 'https://i.postimg.cc/nL1FWjZT/Moura.png'; /* Substituir pela URL da imagem verde */
+        container.querySelector('.text').textContent = 'Manti, mais conhecido como Desconhecido, é um chefe de cozinha extremamente habilidoso, consegue fazer sua mão direita pegar fogo, isso lhe dá mais força,velocidade e resistencia, quase igual ao Dalsass, a diferença é que gasta menos energia corporal comparado ao Dalsass';
+    }
+}
+</script>
+</body>
+</html>
+
